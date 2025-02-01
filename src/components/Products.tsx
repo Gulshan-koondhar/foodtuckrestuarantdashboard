@@ -48,51 +48,65 @@ const Products = ({ limit }: { limit: number }) => {
 
   return (
     <div className="bg-[#182237] w-full p-5 rounded-md my-5">
-      <h1 className="font-bold text-lg text-white">Products</h1>
+      <h1 className="font-bold text-lg text-white mb-4 md:mb-0">Products</h1>
 
       {loading ? (
         <p className="text-white">Loading...</p>
       ) : products.length > 0 ? (
-        <table className="w-full text-white">
-          <thead>
-            <tr>
-              <td className="py-4">Name</td>
-              <td className="py-4">Price</td>
-              <td className="py-4">Original Price</td>
-              <td className="py-4">Category</td>
-              <td className="py-4">CreatedAt</td>
-            </tr>
-          </thead>
-
-          <tbody>
-            {products.map((product: Product) => (
-              <tr
-                key={product._id}
-                onClick={() => handleRowClick(product.currentSlug)}
-                className="cursor-pointer hover:bg-gray-700"
-              >
-                <td className="py-4">
-                  <div className="flex gap-2 items-center">
-                    <Image
-                      src={product.imageUrl}
-                      alt="image"
-                      width={50}
-                      height={50}
-                      className="rounded-md"
-                    />
-                    <h1>{product.name}</h1>
-                  </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-white min-w-[600px]">
+            <thead>
+              <tr>
+                <td className="py-2 px-4 text-center min-w-[200px]">Name</td>
+                <td className="py-2 px-4 text-center min-w-[100px]">Price</td>
+                <td className="py-2 px-4 text-center min-w-[150px]">
+                  Original Price
                 </td>
-                <td className="py-4">$ {product.price}</td>
-                <td className="py-4">$ {product.originalPrice}</td>
-                <td className="py-4">{product.category}</td>
-                <td className="py-4">
-                  {new Date(product._createdAt).toLocaleDateString()}
+                <td className="py-2 px-4 text-center min-w-[150px]">
+                  Category
+                </td>
+                <td className="py-2 px-4 text-center min-w-[150px]">
+                  CreatedAt
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {products.map((product: Product) => (
+                <tr
+                  key={product._id}
+                  onClick={() => handleRowClick(product.currentSlug)}
+                  className="cursor-pointer hover:bg-gray-700"
+                >
+                  <td className="p-4">
+                    <div className="flex gap-2 items-center">
+                      <Image
+                        src={product.imageUrl}
+                        alt="image"
+                        width={50}
+                        height={50}
+                        className="rounded-md"
+                      />
+                      <h1 className="text-sm md:text-base">{product.name}</h1>
+                    </div>
+                  </td>
+                  <td className="py-4 text-sm text-center md:text-base">
+                    $ {product.price}
+                  </td>
+                  <td className="py-4 text-sm text-center md:text-base">
+                    $ {product.originalPrice}
+                  </td>
+                  <td className="py-4 text-sm text-center md:text-base">
+                    {product.category}
+                  </td>
+                  <td className="py-4 text-sm text-center md:text-base">
+                    {new Date(product._createdAt).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <p className="text-white">No products available.</p>
       )}
