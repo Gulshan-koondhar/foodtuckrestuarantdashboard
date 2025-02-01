@@ -34,12 +34,11 @@ const Sidebar = () => {
   return (
     <div>
       <div>
-        <h1 className="text-2xl font-bold text-center">Admin Panel</h1>
+        <h1 className="text-2xl font-bold text-center mb-10">Admin Panel</h1>
       </div>
       <ul>
         {menuItems.map((item, index) => (
           <li key={index}>
-            <h1 className="mb-5">{item.title}</h1>
             <div className="flex flex-col gap-2">
               {item.list.map((list, index) => (
                 <div

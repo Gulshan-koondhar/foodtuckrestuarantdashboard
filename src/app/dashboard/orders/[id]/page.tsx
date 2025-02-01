@@ -79,7 +79,9 @@ const OrderSinglePage = ({ params }: { params: Promise<{ id: string }> }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Order & Cart Items Section */}
         <div className="bg-[#182237] p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Order ID: {order._id}</h2>
+          <h2 className="text-xl font-semibold mb-4 w-full">
+            Order ID: {order._id}
+          </h2>
           <h3 className="text-lg font-semibold mb-2">Items</h3>
           {order.cartItems && order.cartItems.length > 0 ? (
             <ul className="space-y-2" key={order._id}>

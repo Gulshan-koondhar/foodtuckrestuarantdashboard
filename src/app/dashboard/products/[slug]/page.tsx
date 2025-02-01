@@ -65,8 +65,8 @@ const ProductSinglePage = ({
 
   return (
     <div className="my-5">
-      <div className="grid grid-cols-3 gap-3">
-        <div className="col-span-1">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="sm:col-span-1">
           <Image
             src={product.imageUrl}
             alt={product.name}
@@ -75,7 +75,7 @@ const ProductSinglePage = ({
             className="w-full bg-[#182237] p-4 rounded-md"
           />
         </div>
-        <form onSubmit={handleSubmit} className="col-span-2 space-y-2">
+        <form onSubmit={handleSubmit} className="sm:col-span-2 space-y-2">
           <div>
             <label htmlFor="name">Name</label>
             <input

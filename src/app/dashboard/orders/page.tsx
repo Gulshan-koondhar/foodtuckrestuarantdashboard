@@ -59,46 +59,49 @@ const OrdersPage = () => {
 
   return (
     <div className="bg-[#182237] w-full p-5 rounded-md my-5">
-      <h1 className="font-bold text-lg text-white">Orders</h1>
+      <h1 className="font-bold text-lg text-white mb-5">Orders</h1>
       {loading ? (
         <p className="text-white">Loading...</p>
       ) : orders.length > 0 ? (
-        <table className="w-full text-white">
-          <thead>
-            <tr>
-              <td className="py-4">Name</td>
-              <td className="py-4">Items</td>
-              <td className="py-4">Address</td>
-              <td className="py-4">Date & Time</td>
-              <td className="py-4">Total Amount</td>
-              <td className="py-4">Status</td>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr
-                key={order._id}
-                onClick={() => handleRowClick(order._id)}
-                className="cursor-pointer hover:bg-gray-700"
-              >
-                <td className="py-4">{order.customerName}</td>
-                <td className="py-4">
-                  {order.cartItems.map((item) => item.name).join(", ")}
-                </td>
-                <td className="py-4">{order.address}</td>
-                <td className="py-4">{formatDateTime(order._createdAt)}</td>
-                <td className="py-4">
-                  $
-                  {order.cartItems.reduce(
-                    (acc: number, curr: { price: number }) => acc + curr.price,
-                    0
-                  )}
-                </td>
-                <td className="py-4">{order.status}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-white min-w-[800px]">
+            <thead>
+              <tr>
+                <th className="p-2 text-left min-w-[150px]">Name</th>
+                <th className="p-2 text-left min-w-[200px]">Items</th>
+                <th className="p-2 text-left min-w-[200px]">Address</th>
+                <th className="p-2 text-left min-w-[150px]">Date & Time</th>
+                <th className="p-2 text-left min-w-[120px]">Total Amount</th>
+                <th className="p-2 text-left min-w-[100px]">Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr
+                  key={order._id}
+                  onClick={() => handleRowClick(order._id)}
+                  className="cursor-pointer hover:bg-gray-700"
+                >
+                  <td className="p-2">{order.customerName}</td>
+                  <td className="p-2">
+                    {order.cartItems.map((item) => item.name).join(", ")}
+                  </td>
+                  <td className="p-2">{order.address}</td>
+                  <td className="p-2">{formatDateTime(order._createdAt)}</td>
+                  <td className="p-2">
+                    $
+                    {order.cartItems.reduce(
+                      (acc: number, curr: { price: number }) =>
+                        acc + curr.price,
+                      0
+                    )}
+                  </td>
+                  <td className="p-2">{order.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <p className="text-white">No orders available.</p>
       )}

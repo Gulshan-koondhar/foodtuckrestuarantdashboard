@@ -9,7 +9,7 @@ import React from "react";
 const dashboardPage = () => {
   return (
     <div className="w-full mt-5">
-      <div className="flex justify-between gap-5">
+      <div className="flex flex-wrap items-center justify-between gap-5">
         <OrderCard />
         <ProductCard />
         <RevenueCard />
