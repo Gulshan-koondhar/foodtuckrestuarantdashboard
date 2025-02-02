@@ -4,10 +4,11 @@ import {
   Bed,
   CircleDollarSign,
   LayoutDashboard,
+  LogOut,
   ShoppingBag,
   ShoppingCart,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 const menuItems = [
   {
@@ -31,6 +32,15 @@ const menuItems = [
 ];
 const Sidebar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout"); // Call the logout API
+      router.push("/login"); // Redirect to login page
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
   return (
     <div>
       <div>
@@ -52,7 +62,14 @@ const Sidebar = () => {
             </div>
           </li>
         ))}
+        <button
+          className="hover:bg-[#2e374a] p-2 rounded-md flex gap-2 w-full mt-5"
+          onClick={handleLogout}
+        >
+          <LogOut /> Logout
+        </button>
       </ul>
+      <div></div>
     </div>
   );
 };
