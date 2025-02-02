@@ -68,13 +68,10 @@ const DailyRevenueChart = () => {
 
   return (
     <div>
-      <h2 className="text-lg font-semibold my-4 p-3 rounded-md bg-[#182237]">
-        Daily Revenue Chart
-      </h2>
       <ResponsiveContainer
         width="100%"
         height={400}
-        className="bg-[#182237] p-2 rounded-md"
+        className="bg-[#182237] p-2 my-4 rounded-md"
       >
         <LineChart data={data}>
           <XAxis dataKey="date" />
