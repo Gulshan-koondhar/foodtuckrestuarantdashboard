@@ -52,7 +52,7 @@ export default function LoginPage() {
 
       if (res.ok) {
         console.log("Hello");
-        router.push("/"); // Redirect on success
+        router.push("/dashboard"); // Redirect on success
       } else {
         const response = await res.json();
         setError(response.error || "Login failed");
